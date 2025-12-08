@@ -218,8 +218,8 @@ func Push(packagedPath, remote string) (string, error) {
 		return "", err
 	}
 	if exists {
-		common.Log.Errorf("version %s of chart %s already exists in the registry %s", ch.Metadata.Version, chartName, ref)
-		return "", fmt.Errorf("version %s of chart %s already exists in the registry %s", ch.Metadata.Version, chartName, ref)
+		common.Log.Infof("version %s of chart %s already exists in the registry %s, skipping", ch.Metadata.Version, chartName, ref)
+		return ref, nil
 	}
 
 	common.Log.Infof("Pushing chart %s version %s to %s", chartName, ch.Metadata.Version, ref)
