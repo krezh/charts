@@ -1,0 +1,15 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: CDI
+metadata:
+    name: cdi
+    namespace: {{ .Release.Namespace }}
+spec:
+    certConfig: {{ .Values.cdi.certConfig | toYaml | nindent 8 }}
+    cloneStrategyOverride: {{ .Values.cdi.cloneStrategyOverride }}
+    config: {{ .Values.cdi.config | toYaml | nindent 8 }}
+    customizeComponents: {{ .Values.cdi.customizeComponents | toYaml | nindent 8 }}
+    imagePullPolicy: {{ .Values.cdi.imagePullPolicy }}
+    infra: {{ .Values.cdi.infra | toYaml | nindent 8 }}
+    priorityClass: {{ .Values.cdi.priorityClass }}
+    uninstallStrategy: {{ .Values.cdi.uninstallStrategy }}
+    workload: {{ .Values.cdi.workload | toYaml | nindent 8 }}

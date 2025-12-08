@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    labels:
+        cdi.kubevirt.io: cdi-operator
+        name: cdi-operator
+        operator.cdi.kubevirt.io: ""
+        prometheus.cdi.kubevirt.io: "true"
+    name: cdi-operator
+    namespace: {{ .Release.Namespace }}
+spec:
+    replicas: {{ .Values.cdiOperator.replicas }}
+    selector:
+        matchLabels:
+            name: cdi-operator
+            operator.cdi.kubevirt.io: ""
+    strategy: {}
+    template:
+        metadata:
+            annotations:
+                openshift.io/required-scc: restricted-v2
+            labels:
+                cdi.kubevirt.io: cdi-operator
+                name: cdi-operator
+                operator.cdi.kubevirt.io: ""
+                prometheus.cdi.kubevirt.io: "true"
+        spec:
+            affinity: {{ .Values.cdiOperator.affinity | toYaml | nindent 16 }}
+            containers:
+                - env: {{ .Values.cdiOperator.env | toYaml | nindent 20 }}
+                  image: {{ .Values.cdiOperator.image.repository }}:{{ .Values.cdiOperator.image.tag }}
+                  imagePullPolicy: {{ .Values.cdiOperator.imagePullPolicy }}
+                  name: cdi-operator
+                  ports:
+                    - containerPort: 8443
+                      name: metrics
+                      protocol: TCP
+                  resources: {{ .Values.cdiOperator.resources | toYaml | nindent 20 }}
+                  securityContext: {{ .Values.cdiOperator.securityContext | toYaml | nindent 20 }}
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: FallbackToLogsOnError
+            nodeSelector: {{ .Values.cdiOperator.nodeSelector | toYaml | nindent 16 }}
+            securityContext: {{ .Values.cdiOperator.podSecurityContext | toYaml | nindent 16 }}
+            serviceAccountName: cdi-operator
+            tolerations: {{ .Values.cdiOperator.tolerations | toYaml | nindent 16 }}
