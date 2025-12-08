@@ -243,6 +243,11 @@ func Push(packagedPath, remote string) (string, error) {
 func versionExistsInRegistry(rc *registry.Client, ref, version string) (bool, error) {
 	tags, err := rc.Tags(strings.TrimPrefix(ref, "oci://"))
 	if err != nil {
+		// If the repository doesn't exist yet (404), treat it as "version doesn't exist"
+		if strings.Contains(err.Error(), "404") || strings.Contains(err.Error(), "name unknown") {
+			common.Log.Debugf("Registry repository does not exist yet, will create on first push")
+			return false, nil
+		}
 		return false, fmt.Errorf("failed to fetch tags: %w", err)
 	}
 	for _, tag := range tags {
