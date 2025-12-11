@@ -57,7 +57,7 @@ cdiOperator:
         - name: MONITORING_NAMESPACE
     image:
         repository: quay.io/kubevirt/cdi-operator
-        tag: v1.63.1
+        tag: v1.64.0
     imagePullPolicy: IfNotPresent
     nodeSelector:
         kubernetes.io/os: linux
