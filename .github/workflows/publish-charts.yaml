@@ -28,7 +28,7 @@ jobs:
       - name: Log in to the Container registry
         run: "helm registry login ${{ env.REGISTRY }}/${{ github.actor }}/charts -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}"
       - name: Set up Go
-        uses: actions/setup-go@7b8cf10d4e4a01d4992d18a89f4d7dc5a3e6d6f4 # v4
+        uses: actions/setup-go@7a3fe6cf4cb3a834922a1244abfce67bcef6a0c5 # v6
         with:
           go-version-file: "go.mod"
 
