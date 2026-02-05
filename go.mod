@@ -6,7 +6,7 @@ toolchain go1.25.5
 
 require (
 	github.com/Masterminds/semver/v3 v3.4.0
-	github.com/go-git/go-git/v5 v5.16.2
+	github.com/go-git/go-git/v5 v5.16.4
 	github.com/google/go-github/v74 v74.0.0
 	github.com/google/go-github/v80 v80.0.0
 	github.com/knadh/koanf/parsers/yaml v1.1.0
