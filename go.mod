@@ -11,7 +11,7 @@ require (
 	github.com/google/go-github/v80 v80.0.0
 	github.com/google/go-github/v81 v81.0.0
 	github.com/knadh/koanf/parsers/yaml v1.1.0
-	github.com/knadh/koanf/providers/file v1.2.0
+	github.com/knadh/koanf/providers/file v1.2.1
 	github.com/knadh/koanf/providers/posflag v1.0.1
 	github.com/knadh/koanf/v2 v2.3.0
 	github.com/mikefarah/yq/v4 v4.49.2
